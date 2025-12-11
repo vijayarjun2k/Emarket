@@ -1,0 +1,148 @@
+{
+  "user": [
+    {
+      "username": "admin",
+      "password": "admin",
+      "name": "Adminuser",
+      "email": "ad@in.com",
+      "phone": "678888",
+      "gender": "male",
+      "role": "admin",
+      "status": true,
+      "id": "1"
+    },
+    {
+      "id": "54cb",
+      "username": "user1",
+      "password": "user1",
+      "name": "User one",
+      "email": "user1@gmail.com",
+      "phone": "91234567894",
+      "gender": "male",
+      "role": "user",
+      "status": true
+    },
+    {
+      "id": "32b6",
+      "username": "Jagadeeswari ",
+      "password": "55555",
+      "name": "TTTTTTTTTTTTTTTTTTTT",
+      "email": "TYU@gmail.com",
+      "phone": "3456798888",
+      "gender": "male",
+      "role": "user",
+      "status": true
+    },
+    {
+      "id": "9b59",
+      "username": "Saravanan",
+      "password": "saravanan123",
+      "name": "Saravanan Senthil",
+      "email": "saro@gmail.com",
+      "phone": "9786544322",
+      "gender": "male",
+      "role": "admin",
+      "status": true
+    }
+  ],
+  "associate": [
+    {
+      "id": 1,
+      "name": "Ramesh Kumar",
+      "email": "ramesh@in.com",
+      "phone": "899089898",
+      "associategroup": "level1",
+      "address": "No 2\nRamraj street, chennai\nIndai",
+      "type": "SUPPLIER",
+      "status": true
+    },
+    {
+      "id": 0,
+      "name": "Muthu Kumar",
+      "email": "muths@gmail.com",
+      "phone": "9840587549",
+      "associategroup": "level2",
+      "address": "11A, Ebiner Street, Mappedu, Chennai",
+      "type": "CUSTOMER",
+      "status": true
+    }
+  ],
+  "role": [
+    {
+      "code": "admin",
+      "name": "Admin"
+    },
+    {
+      "code": "manager",
+      "name": "Manager"
+    },
+    {
+      "code": "user",
+      "name": "User"
+    }
+  ],
+  "menu": [
+    {
+      "code": "associate",
+      "Name": "Associate"
+    },
+    {
+      "code": "customer",
+      "Name": "Customer"
+    },
+    {
+      "code": "user",
+      "Name": "User"
+    }
+  ],
+  "roleaccess": [
+    {
+      "role": "admin",
+      "menu": "associate",
+      "haveadd": true,
+      "haveedit": true,
+      "havedelete": true,
+      "haveview": true
+    },
+    {
+      "role": "admin",
+      "menu": "customer",
+      "haveadd": true,
+      "haveedit": true,
+      "havedelete": true,
+      "haveview": true
+    },
+    {
+      "role": "admin",
+      "menu": "user",
+      "haveadd": true,
+      "haveedit": true,
+      "havedelete": true,
+      "haveview": true
+    },
+    {
+      "role": "manager",
+      "menu": "associate",
+      "haveadd": true,
+      "haveedit": true,
+      "havedelete": true,
+      "haveview": true
+    },
+    {
+      "role": "manager",
+      "menu": "customer",
+      "haveadd": true,
+      "haveedit": true,
+      "havedelete": true,
+      "haveview": true
+    },
+    {
+      "role": "user",
+      "menu": "associate",
+      "haveadd": true,
+      "haveedit": false,
+      "havedelete": false,
+      "haveview": true
+    }
+  ]
+}

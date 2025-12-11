@@ -1,0 +1,47 @@
+/* Make table scrollable on mobile */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Reduce column width on small screens */
+.mat-table-responsive th,
+.mat-table-responsive td {
+  white-space: nowrap;
+}
+
+/* Header alignment improvement */
+.header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.add-btn {
+  margin-left: auto;
+}
+
+/* Action buttons responsive */
+.action-buttons button {
+  margin-right: 6px;
+}
+
+/* Mobile view adjustments */
+@media (max-width: 600px) {
+  .header-flex h1 {
+    font-size: 18px;
+  }
+
+  .add-btn {
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+}

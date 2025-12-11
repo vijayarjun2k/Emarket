@@ -1,0 +1,22 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+mat-list-item {
+  cursor: pointer;
+}
+mat-drawer {
+  padding-top: 64px !important; /* Push menu down */
+}
+
+mat-drawer-content {
+  padding-top: 64px !important; /* Prevent overlap */
+}
+
+mat-toolbar {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1100;
+}
+

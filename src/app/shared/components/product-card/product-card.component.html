@@ -1,0 +1,37 @@
+<div class="w-72 h-[450px] flex flex-col rounded-xl bg-white shadow-lg overflow-hidden">
+  
+  <!-- FIXED IMAGE HEIGHT -->
+  <div class="h-48 w-full overflow-hidden flex items-center justify-center bg-gray-100">
+    <img class="object-contain h-full" [src]="product.image" alt="product" />
+  </div>
+
+  <!-- CONTENT AREA -->
+  <div class="flex flex-col flex-1 px-4 py-3">
+    
+    <!-- Title (2-line clamp) -->
+    <h2 class="font-bold text-lg line-clamp-2">
+      {{ product.title }}
+    </h2>
+
+    <!-- Description (fixed height, 3-line clamp) -->
+    <p class="text-gray-700 text-sm mt-2 line-clamp-3">
+      {{ product.description }}
+    </p>
+
+    <!-- PRICE -->
+    <div class="mt-auto">
+      <span class="inline-block rounded-full bg-gray-100 px-3 py-1 text-base font-semibold text-gray-900">
+        {{ product.price | currency }}
+      </span>
+
+      <button
+        type="button"
+        (click)="addToCart(product)"
+        class="mt-4 w-full rounded-lg bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow hover:bg-green-700">
+        <mat-icon class="mr-1">add_shopping_cart</mat-icon>
+        Add to cart
+      </button>
+    </div>
+  </div>
+
+</div>
