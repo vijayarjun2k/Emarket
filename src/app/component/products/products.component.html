@@ -1,5 +1,124 @@
+<!-- Disclaimer Card -->
+<div *ngIf="showAlert" class="bg-yellow-100 border border-yellow-300 rounded-md p-4 text-sm text-gray-800 mb-4 shadow-sm">
+  <div class="flex items-start gap-3">
+    
+    <div class="flex-shrink-0 text-yellow-700 pt-1">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <path d="M12 9v4"></path>
+        <path d="M12 17h.01"></path>
+        <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+      </svg>
+    </div>
+
+    <div class="text-left leading-relaxed">
+      <p class="mb-1">1 - Shopping Cart must contain products that belong to the same Budget Code.</p>
+      <p class="mb-1">2 - The showing prices are not VAT Inclusive.</p>
+      <p>
+        3 - I acknowledge that it has been verified there are no national products that have a systemic priority 
+        whether it is price preference or mandatory list of products to be purchased. I also promise full responsibility 
+        if there are national products that have statutory preference available in the E-marketplace for which 
+        a purchase order is to be issued and the purchase has not been made in the implementation of the 
+        relevant laws and regulations.
+      </p>
+    </div>
+
+    <button class="ml-auto text-yellow-700 hover:text-yellow-900" (click)="closeAlert()">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <path d="M18 6 6 18"></path>
+        <path d="M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<!-- Search Bar -->
+<div class="flex justify-center mt-6 mb-4">
+  <input 
+    type="search"
+    [(ngModel)]="searchText"
+    (input)="filterProducts()"
+    placeholder="Search..."
+    class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-gray-400"
+  />
+</div>
+
+<!-- COMPACT FILTER CARD -->
+<div class="mt-4 mb-6 bg-white p-4 rounded-lg shadow-sm border border-gray-200 max-w-xl mx-auto">
+
+  <h3 class="text-lg font-semibold mb-4">Filters</h3>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+    <!-- Category -->
+    <div>
+      <label class="text-sm font-medium mb-1 block">Category</label>
+      <select
+        class="border border-gray-300 rounded-md p-2 text-sm w-full"
+        [(ngModel)]="selectedCategory"
+        (change)="applyFilters()"
+      >
+        <option value="">All</option>
+        <option *ngFor="let c of categories" [value]="c">{{ c }}</option>
+      </select>
+    </div>
+
+    <!-- Rating -->
+    <div>
+      <label class="text-sm font-medium mb-1 block">Rating</label>
+      <select
+        class="border border-gray-300 rounded-md p-2 text-sm w-full"
+        [(ngModel)]="selectedRating"
+        (change)="applyFilters()"
+      >
+        <option value="">Any</option>
+        <option value="4">4★ & above</option>
+        <option value="3">3★ & above</option>
+        <option value="2">2★ & above</option>
+        <option value="1">1★ & above</option>
+      </select>
+    </div>
+
+    <!-- Min Price -->
+    <div>
+      <label class="text-sm font-medium mb-1 block">Min Price</label>
+      <input
+        type="number"
+        class="border border-gray-300 rounded-md p-2 text-sm w-full"
+        placeholder="0"
+        [(ngModel)]="minPrice"
+        (input)="applyFilters()"
+      />
+    </div>
+
+    <!-- Max Price -->
+    <div>
+      <label class="text-sm font-medium mb-1 block">Max Price</label>
+      <input
+        type="number"
+        class="border border-gray-300 rounded-md p-2 text-sm w-full"
+        placeholder="9999"
+        [(ngModel)]="maxPrice"
+        (input)="applyFilters()"
+      />
+    </div>
+
+  </div>
+
+  <!-- Reset Button -->
+  <button
+    class="mt-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md py-2 px-4 text-sm font-medium w-full sm:w-auto"
+    (click)="resetFilters()"
+  >
+    Reset Filters
+  </button>
+
+</div>
+
+
 <div class="grid gap-6 grid-cols-[repeat(auto-fit,minmax(260px,1fr))]">
-  @for (item of products$ | async; track $index) {
+  @for (item of filteredProducts; track $index) {
     <app-product-card [product]="item" (handleAdd)="addItemToCart($event)" />
   }
 </div>

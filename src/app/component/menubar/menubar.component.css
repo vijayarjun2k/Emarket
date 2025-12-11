@@ -19,4 +19,11 @@ mat-toolbar {
   right: 0;
   z-index: 1100;
 }
+.mat-mdc-list-item-icon {
+  opacity: 1 !important;
+  margin-right: 8px !important;
+}
 
+.mdc-list-item {
+  padding-left: 12px !important;
+}
