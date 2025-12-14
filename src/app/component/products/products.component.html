@@ -34,24 +34,41 @@
   </div>
 </div>
 
-<!-- SEARCH BAR -->
-<div class="mt-6 mb-4 max-w-5xl mx-auto">
+<!-- SEARCH BAR + FILTER ICON -->
+<div class="mt-6 mb-4 max-w-5xl mx-auto flex items-center gap-3">
+
+  <!-- Search Input -->
   <input 
     type="search"
     [(ngModel)]="searchText"
     (input)="filterProducts()"
     placeholder="Search..."
-    class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm 
+    class="flex-1 border border-gray-300 rounded-md px-3 py-2 text-sm
            focus:outline-none focus:ring-1 focus:ring-gray-400"
   />
+
+  <!-- Filter Toggle Icon -->
+  <button
+    type="button"
+    (click)="toggleFilters()"
+    class="border border-gray-300 rounded-md p-2 
+           hover:bg-gray-100 transition"
+    title="Show / Hide Filters"
+  >
+    <i class="hgi hgi-stroke hgi-preference-horizontal text-xl"></i>
+  </button>
+
 </div>
 
-<!-- FILTER ROW -->
-<div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200 max-w-5xl mx-auto">
+<!-- FILTER SECTION -->
+<div
+  *ngIf="showFilters"
+  class="bg-white p-4 rounded-lg shadow-sm border border-gray-200 max-w-5xl mx-auto mb-6"
+>
 
   <h3 class="text-lg font-semibold mb-4">Filters</h3>
 
-  <!-- FILTER ITEMS IN ONE ROW -->
+  <!-- FILTER ROW -->
   <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
 
     <!-- Category -->
@@ -109,18 +126,18 @@
 
   </div>
 
-  <!-- RESET BUTTON CENTERED -->
+  <!-- RESET -->
   <div class="flex justify-center mt-4">
     <button
-      class="bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md py-2 px-6 text-sm font-medium"
+      class="bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md 
+             py-2 px-6 text-sm font-medium"
       (click)="resetFilters()"
     >
       Reset Filters
     </button>
   </div>
 
-</div><br>
-
+</div>
 
 <div class="grid gap-6 grid-cols-[repeat(auto-fit,minmax(260px,1fr))]" style="justify-items: center;">
   @for (item of filteredProducts; track $index) {

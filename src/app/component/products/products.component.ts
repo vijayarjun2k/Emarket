@@ -142,5 +142,11 @@ resetFilters() {
   this.filteredProducts = [...this.productsList];
 }
 
+showFilters = true; // filters OPEN initially
+
+toggleFilters() {
+  this.showFilters = !this.showFilters;
+}
+
 
 }
