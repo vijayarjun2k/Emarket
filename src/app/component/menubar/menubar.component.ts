@@ -13,7 +13,7 @@ import {MatMenuModule} from "@angular/material/menu"
 import {MatListModule} from "@angular/material/list"
 import {MatIconModule} from "@angular/material/icon"
 import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
-
+import { MatBadgeModule } from '@angular/material/badge';
 
 import { Observable } from 'rxjs';
 import { AppState } from '../../states/app.state';
@@ -22,6 +22,9 @@ import { IProduct } from '../../shared/models/product.interface';
 import { selectCartProducts } from '../../states/cart/cart.selector';
 import { CartStore } from '../../Store/cart.store';
 import { ProductsComponent } from '../products/products.component';
+import { NgModule } from '@angular/core';
+import { HugeiconsIconComponent } from '@hugeicons/angular';
+//import { Home09Icon } from '@ncgr-shared/huge-icons/Home09Icon';
 @Component({
   selector: 'app-menubar',
   standalone: true,
@@ -37,7 +40,9 @@ import { ProductsComponent } from '../products/products.component';
     MatIconModule,
     MatFormFieldModule,
     RouterLink,
-    RouterOutlet
+    RouterOutlet,
+    MatBadgeModule,
+    HugeiconsIconComponent
 ],
   templateUrl: './menubar.component.html',
   styleUrl: './menubar.component.css'

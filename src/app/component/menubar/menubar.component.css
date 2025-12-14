@@ -27,3 +27,16 @@ mat-toolbar {
 .mdc-list-item {
   padding-left: 12px !important;
 }
+.menu-icon {
+  font-size: 40px;
+  margin-right: 14px;
+  color: #374151; /* neutral gray */
+  display: flex;
+  align-items: center;
+}
+
+.menu-text {
+  font-size: 16px;
+  font-weight: 500;
+  color: #111827;
+}

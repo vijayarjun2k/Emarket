@@ -1,3 +1,4 @@
+&nbsp; &nbsp;&nbsp;
 <!-- Disclaimer Card -->
 <div *ngIf="showAlert" class="bg-yellow-100 border border-yellow-300 rounded-md p-4 text-sm text-gray-800 mb-4 shadow-sm">
   <div class="flex items-start gap-3">
@@ -33,23 +34,25 @@
   </div>
 </div>
 
-<!-- Search Bar -->
-<div class="flex justify-center mt-6 mb-4">
+<!-- SEARCH BAR -->
+<div class="mt-6 mb-4 max-w-5xl mx-auto">
   <input 
     type="search"
     [(ngModel)]="searchText"
     (input)="filterProducts()"
     placeholder="Search..."
-    class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-gray-400"
+    class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm 
+           focus:outline-none focus:ring-1 focus:ring-gray-400"
   />
 </div>
 
-<!-- COMPACT FILTER CARD -->
-<div class="mt-4 mb-6 bg-white p-4 rounded-lg shadow-sm border border-gray-200 max-w-xl mx-auto">
+<!-- FILTER ROW -->
+<div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200 max-w-5xl mx-auto">
 
   <h3 class="text-lg font-semibold mb-4">Filters</h3>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+  <!-- FILTER ITEMS IN ONE ROW -->
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
 
     <!-- Category -->
     <div>
@@ -106,18 +109,20 @@
 
   </div>
 
-  <!-- Reset Button -->
-  <button
-    class="mt-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md py-2 px-4 text-sm font-medium w-full sm:w-auto"
-    (click)="resetFilters()"
-  >
-    Reset Filters
-  </button>
+  <!-- RESET BUTTON CENTERED -->
+  <div class="flex justify-center mt-4">
+    <button
+      class="bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md py-2 px-6 text-sm font-medium"
+      (click)="resetFilters()"
+    >
+      Reset Filters
+    </button>
+  </div>
 
-</div>
+</div><br>
 
 
-<div class="grid gap-6 grid-cols-[repeat(auto-fit,minmax(260px,1fr))]">
+<div class="grid gap-6 grid-cols-[repeat(auto-fit,minmax(260px,1fr))]" style="justify-items: center;">
   @for (item of filteredProducts; track $index) {
     <app-product-card [product]="item" (handleAdd)="addItemToCart($event)" />
   }

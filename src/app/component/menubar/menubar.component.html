@@ -5,9 +5,17 @@
     </button>
     <span>Angular Authentication - NGRX</span>
     <span class="example-spacer"></span>
-    <button mat-button routerLink="/cart">
-      Cart <span>{{ cartStore.products().length }}</span>
+    <button
+      mat-icon-button
+      routerLink="/cart"
+      matBadge="{{ cartStore.products().length }}"
+      matBadgeColor="warn"
+      matBadgeOverlap="false"
+      aria-label="Cart"
+    >
+      <mat-icon>shopping_cart</mat-icon>
     </button>
+    &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
     <button mat-button routerLink="/login">Logout</button>
   </mat-toolbar>
 
@@ -16,18 +24,20 @@
       <mat-nav-list>
         <!-- Home link -->
         <mat-list-item routerLink="">
-          <mat-icon matListItemIcon>home</mat-icon>
-          <span matListItemTitle>Home</span>
+          <!-- <home-09-icon></home-09-icon> -->
+            <i class="hgi hgi-stroke hgi-home-09"></i>&nbsp;&nbsp;
+          <span class="menu-text">Home</span>
         </mat-list-item>
 
         <!-- Dynamic menu items -->
         <mat-list-item *ngFor="let item of menulist" [routerLink]="item.menu">
-          <mat-icon matListItemIcon>verified_user</mat-icon>
-          <span matListItemTitle>{{ item.menu }}</span>
+          <i class="hgi hgi-stroke hgi-user"></i>&nbsp;&nbsp;
+          <span class="menu-text">{{ item.menu }}</span>
         </mat-list-item>
 
         <mat-list-item routerLink="products">
-          <mat-icon matListItemIcon>shopping_basket</mat-icon>E-Marketplace
+          <i class="hgi hgi-stroke hgi-shopping-basket-check-in-01"></i>&nbsp;&nbsp;
+          <span class="menu-text">E-Marketplace</span>
         </mat-list-item>
       </mat-nav-list>
     </mat-drawer>

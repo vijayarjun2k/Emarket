@@ -39,7 +39,23 @@ export const CartStore = signalStore(
 
     return {
       addToCart(product: IProduct) {
-        const updated = [...products(), product];
+        const existing = products().find((p: { id: number; }) => p.id === product.id);
+
+        let updated: IProduct[];
+
+        if (existing) {
+          updated = products().map((p: { id: number; quantity: any; }) =>
+            p.id === product.id
+              ? { ...p, quantity: (p.quantity ?? 1) + 1 }
+              : p
+          );
+        } else {
+          updated = [
+            ...products(),
+            { ...product, quantity: 1 }
+          ];
+        }
+
         patchState(store, { products: updated });
         save(updated);
       },
@@ -59,19 +75,32 @@ export const CartStore = signalStore(
       },
 
       decrement(id: number) {
-        const updated = products().map((p: { id: number; quantity: number; }) =>
-          p.id === id ? { ...p, quantity: p.quantity - 1 } : p
+        const updated = products()
+          .map((p: { id: number; quantity: number; }) =>
+            p.id === id ? { ...p, quantity: p.quantity - 1 } : p
+          )
+          .filter((p: { quantity: number; }) => p.quantity > 0);
+
+        patchState(store, { products: updated });
+        save(updated);
+      },
+
+      updateQuantity(id: number, quantity: number) {
+        if (quantity <= 0) {
+          this.removeItem(id);
+          return;
+        }
+
+        const updated = products().map((p: { id: number; }) =>
+          p.id === id ? { ...p, quantity } : p
         );
         patchState(store, { products: updated });
         save(updated);
       },
 
-      updateQuantity(id: number, qty: number) {
-        const updated = products().map((p: { id: number; }) =>
-          p.id === id ? { ...p, quantity: qty } : p
-        );
-        patchState(store, { products: updated });
-        save(updated);
+      clearCart() {
+        patchState(store, { products: [] });
+        save([]);
       }
     };
   })
