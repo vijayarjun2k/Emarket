@@ -1,0 +1,66 @@
+<div class="min-h-screen bg-gray-100 flex items-center justify-center">
+
+  <div class="bg-white w-full max-w-md p-6 rounded-xl shadow-lg">
+
+    <h2 class="text-xl font-bold mb-4 text-center">
+      Secure Payment
+    </h2>
+
+    <p class="text-center mb-6 text-gray-600">
+      Amount to Pay:
+      <span class="font-semibold">
+        {{ cartStore.totalPrice()  }}
+      </span>
+    </p>
+
+    <!-- PAYMENT OPTIONS -->
+    <div class="space-y-4">
+
+      <!-- GPay -->
+      <button
+        (click)="pay('gpay')"
+        class="w-full flex items-center justify-center gap-2 border rounded-lg py-3 hover:bg-gray-50">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Google_Pay_Logo.svg/2560px-Google_Pay_Logo.svg.png"
+             class="h-6" />
+        Pay with Google Pay
+      </button>
+
+      <!-- Card -->
+      <button
+        (click)="pay('card')"
+        class="w-full flex items-center justify-center gap-2 border rounded-lg py-3 hover:bg-gray-50">
+        💳 Debit / Credit Card
+      </button>
+
+    </div>
+  </div>
+
+  <!-- SUCCESS MODAL -->
+  <div
+    *ngIf="showSuccess"
+    class="fixed inset-0 bg-black/50 flex items-center justify-center">
+
+    <div class="bg-white p-6 rounded-xl shadow-xl max-w-sm w-full text-center">
+
+      <h3 class="text-xl font-bold text-green-600">
+        Payment Successful 🎉
+      </h3>
+
+      <p class="mt-2 text-gray-600">
+        Your order will be delivered by
+      </p>
+
+      <p class="font-semibold mt-1">
+        {{ deliveryDate }}
+      </p>
+
+      <button
+        routerLink="/products"
+        class="mt-6 w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700">
+        Back to Shopping
+      </button>
+
+    </div>
+  </div>
+
+</div>

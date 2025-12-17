@@ -1,0 +1,115 @@
+<div class="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow mt-6">
+    
+  <h2 class="text-2xl font-bold mb-4"><i class="hgi hgi-stroke hgi-file-01"></i>&nbsp;Order Summary</h2>
+
+  <div class="divide-y">
+    @for (item of cartStore.products(); track item.id) {
+      <div class="flex justify-between py-3">
+        <span>{{ item.title }} × {{ item.quantity }}</span>
+        <span class="font-medium">
+          {{ item.price * item.quantity | currency }}
+        </span>
+      </div>
+    }
+  </div>
+
+  <div class="flex justify-between mt-6 text-lg font-semibold">
+    <span>Total</span>
+    <span>{{ cartStore.totalPrice() | currency}}</span>
+  </div>
+
+  <div class="min-h-screen bg-100 flex justify-center p-6">
+
+  <form
+    [formGroup]="checkoutForm"
+    class="bg-white w-full p-6 rounded-xl shadow space-y-4">
+
+    <h2 class="text-xl font-bold"><i class="hgi hgi-stroke hgi-truck-delivery"></i>&nbsp;Delivery Address</h2>
+
+    <!-- Full Name -->
+    <mat-form-field class="w-full">
+      <mat-label>Full Name</mat-label>
+      <input matInput formControlName="name">
+      <mat-error *ngIf="checkoutForm.get('name')?.hasError('required')">
+        Name is required
+      </mat-error>
+      <mat-error *ngIf="checkoutForm.get('name')?.hasError('pattern')">
+        Name must contain only letters
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Email -->
+    <mat-form-field class="w-full">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email">
+      <mat-error *ngIf="checkoutForm.get('email')?.invalid">
+        Enter a valid email address
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Phone -->
+    <mat-form-field class="w-full">
+      <mat-label>Phone Number</mat-label>
+      <input matInput formControlName="phone">
+      <mat-error>
+        Enter a valid 10-digit phone number
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Address -->
+    <mat-form-field class="w-full">
+      <mat-label>Address</mat-label>
+      <textarea
+        matInput
+        rows="3"
+        formControlName="addressLine"
+        [maxlength]="maxAddressLength">
+      </textarea>
+
+      <mat-hint align="end">
+        {{ addressCount }}/{{ maxAddressLength }}
+      </mat-hint>
+
+      <mat-error *ngIf="checkoutForm.get('addressLine')?.invalid">
+        Address is required (max 40 characters)
+      </mat-error>
+    </mat-form-field>
+
+    <!-- City -->
+    <mat-form-field class="w-full">
+      <mat-label>City</mat-label>
+      <input matInput formControlName="city">
+    </mat-form-field>
+
+    <!-- Pincode -->
+    <mat-form-field class="w-full">
+      <mat-label>Pincode</mat-label>
+      <input matInput formControlName="pincode">
+      <mat-error>
+        Enter valid 6-digit pincode
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Button -->
+    <button
+      mat-raised-button
+      color="primary"
+      class="w-full py-3 text-lg"
+      [disabled]="checkoutForm.invalid"
+      (click)="proceedToPayment()">
+      Continue to Payment
+    </button>
+
+  </form>
+</div>
+
+  <!-- <button
+    (click)="proceedToPayment()"
+    class="mt-6 w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700">
+    Continue to Payment
+  </button> -->
+
+</div> 
+
+
+

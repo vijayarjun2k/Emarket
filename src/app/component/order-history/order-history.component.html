@@ -1,0 +1,35 @@
+<div class="min-h-screen bg-gray-100 p-6">
+
+  <h2 class="text-2xl font-bold mb-4">My Orders</h2>
+
+  <div *ngIf="orders.length === 0" class="text-gray-500">
+    No orders placed yet.
+  </div>
+
+  <div class="space-y-4">
+
+    <div *ngFor="let order of orders"
+         class="bg-white p-4 rounded-xl shadow">
+
+      <div class="flex justify-between">
+        <div>
+          <p class="font-semibold">Order ID: {{ order.orderId }}</p>
+          <p class="text-sm text-gray-500">{{ order.date }}</p>
+        </div>
+        <p class="font-semibold text-green-600">
+          {{ order.amount | currency }}
+        </p>
+      </div>
+
+      <p class="mt-2 text-sm">
+        Delivery by <strong>{{ order.deliveryDate }}</strong>
+      </p>
+
+      <p class="mt-1 text-xs text-gray-500">
+        {{ order.address.addressLine }}, {{ order.address.city }}
+      </p>
+
+    </div>
+
+  </div>
+</div>
