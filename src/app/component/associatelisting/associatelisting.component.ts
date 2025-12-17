@@ -7,7 +7,7 @@ import { getassociatelist } from '../../Store/Associate/Associate.Selectors';
 import { deleteeassociate,getassociate, loadassociate, openpopup } from '../../Store/Associate/Associate.Action';
 import { MatTableDataSource, MatTableModule } from "@angular/material/table"
 import { MatPaginator } from "@angular/material/paginator"
-import { MatSort } from "@angular/material/sort"
+import { MatSort, MatSortModule } from "@angular/material/sort"
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
@@ -39,7 +39,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatInputModule,
     MatCheckboxModule,
     MatTableModule,
-    MatPaginator
+    MatPaginator,
+    MatSortModule
   ],
   templateUrl: './associatelisting.component.html',
   styleUrl: './associatelisting.component.css'

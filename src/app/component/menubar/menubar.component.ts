@@ -54,8 +54,15 @@ export class MenubarComponent implements DoCheck, OnInit {
   products$: Observable<IProduct[]>;
   cartStore = inject(CartStore);
   constructor(private router: Router,private store: Store<AppState>) {
-     this.count$ = this.store.select(selectCount);
-        this.products$ = this.store.select(selectCartProducts);
+    this.count$ = this.store.select(selectCount);
+    this.products$ = this.store.select(selectCartProducts);
+
+    this.router.events.subscribe(() => {
+    const url = this.router.url;
+    this.ismenuvisible = !(
+      url.includes('login') || url.includes('register')
+    );
+  });
   }
   ngOnInit(): void {
     if (localStorage.getItem('userdata') != null) {

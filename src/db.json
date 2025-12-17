@@ -43,6 +43,28 @@
       "gender": "male",
       "role": "admin",
       "status": true
+    },
+    {
+      "id": "1b0f",
+      "username": "Robert",
+      "password": "robert123",
+      "name": "Robert Steives",
+      "email": "roberts@gmail.com",
+      "phone": "6890099",
+      "gender": "male",
+      "role": "user",
+      "status": true
+    },
+    {
+      "id": "08da",
+      "username": "jessica ",
+      "password": "jessica",
+      "name": "Jessica jones",
+      "email": "jessica@gmail.com",
+      "phone": "699993279",
+      "gender": "female",
+      "role": "user",
+      "status": true
     }
   ],
   "associate": [

@@ -13,10 +13,25 @@
       {{ product.title }}
     </h2>
 
-    <!-- Description (fixed height, 3-line clamp) -->
-    <p class="text-gray-700 text-sm mt-2 line-clamp-3">
-      {{ product.description }}
-    </p>
+<!-- Description Wrapper -->
+<div class="relative group mt-2">
+
+  <!-- Clamped Description -->
+  <p class="text-gray-700 text-sm line-clamp-3">
+    {{ product.description }}
+  </p>
+
+  <!-- Hover Full Description -->
+  <div
+    class="absolute left-0 top-full mt-2 hidden w-full rounded-lg border 
+           bg-white p-3 text-sm text-gray-700 shadow-xl
+           group-hover:block z-30 overflow-y-auto">
+
+    {{ product.description }}
+
+  </div>
+
+</div>
 
     <!-- PRICE -->
     <div class="mt-auto">
@@ -35,3 +50,24 @@
   </div>
 
 </div>
+
+<!-- Toast -->
+<div
+  *ngIf="showToast"
+  class="fixed top-20 right-6 z-50 flex items-center gap-3 rounded-xl bg-white px-5 py-4 shadow-2xl border-l-4 border-green-600 animate-slide-in">
+
+  <div class="flex h-10 w-10 items-center justify-center rounded-full bg-green-100">
+    <mat-icon class="text-green-600">check_circle</mat-icon>
+  </div>
+
+  <div>
+    <p class="text-sm font-semibold text-gray-800">
+      Added to cart
+    </p>
+    <p class="text-xs text-gray-500">
+      Product added successfully
+    </p>
+  </div>
+
+</div>
+

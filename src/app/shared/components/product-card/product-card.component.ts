@@ -14,11 +14,17 @@ import { MatIcon, MatIconModule } from "@angular/material/icon";
 export class ProductCardComponent {
   @Input() product!: IProduct;
   @Output() handleAdd = new EventEmitter();
+  showToast = false;
   constructor() {}
 
   ngOnInit() {}
 
   addToCart(product: IProduct) {
     this.handleAdd.emit(product);
+    this.showToast = true;
+
+  setTimeout(() => {
+    this.showToast = false;
+  }, 3000);
   }
 }

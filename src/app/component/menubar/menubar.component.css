@@ -40,3 +40,9 @@ mat-toolbar {
   font-weight: 500;
   color: #111827;
 }
+.auth-bg {
+  background-image: url('https://e1.pxfuel.com/desktop-wallpaper/581/154/desktop-wallpaper-backgrounds-for-login-page-login-page.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

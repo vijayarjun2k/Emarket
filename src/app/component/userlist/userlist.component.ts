@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCard, MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { Users } from '../../Store/Model/User.model';
@@ -26,7 +26,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatTableModule,
     MatPaginator,
     MatSort,
-    MatButtonModule
+    MatButtonModule,
+    MatSortModule
   ],
   templateUrl: './userlist.component.html',
   styleUrl: './userlist.component.css'

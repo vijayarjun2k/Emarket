@@ -1,5 +1,5 @@
 <div *ngIf="ismenuvisible">
-  <mat-toolbar color="primary" class="mat-elevation-z8">
+  <mat-toolbar class="mat-elevation-z8" style="background-color: #16A34A; color: white;">
     <button (click)="drawer.toggle()" mat-icon-button>
       <mat-icon>menu</mat-icon>
     </button>
@@ -16,7 +16,7 @@
       <mat-icon>shopping_cart</mat-icon>
     </button>
     &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
-    <button mat-button routerLink="/login">Logout</button>
+    <button mat-button routerLink="/login" style="color: white;">Logout</button>
   </mat-toolbar>
 
   <mat-drawer-container autosize>
@@ -50,7 +50,16 @@
   </mat-drawer-container>
 </div>
 
-<!-- Without menu -->
-<div style="text-align: center; min-height: 600px" *ngIf="!ismenuvisible">
-  <router-outlet></router-outlet>
+<div
+  *ngIf="!ismenuvisible"
+  class="auth-bg min-h-screen flex items-center justify-center"
+>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
 </div>
+
+<!-- Without menu -->
+<!-- <div style="text-align: center; min-height: 600px" *ngIf="!ismenuvisible">
+  <router-outlet></router-outlet>
+</div> -->

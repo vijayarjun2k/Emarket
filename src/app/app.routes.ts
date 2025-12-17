@@ -9,6 +9,10 @@ import { authGuard } from "./guard/auth.guard";
 import { CustomerlistingComponent } from "./component/customerlisting/customerlisting.component";
 import { AssociatelistingComponent } from "./component/associatelisting/associatelisting.component";
 import { UserlistComponent } from "./component/userlist/userlist.component";
+import { CartComponent } from "./component/cart/cart.component";
+import { CheckoutComponent } from "./component/checkout/checkout.component";
+import { PaymentComponent } from "./component/payment/payment.component";
+import { OrderHistoryComponent } from "./component/order-history/order-history.component";
 
 export const routes: Routes = [
         {path: '',component:  HomeComponent, canActivate:[authGuard]},
@@ -18,6 +22,8 @@ export const routes: Routes = [
         {path: 'supplier',component: SupplierComponent},
         {path: 'register',component: RegisterComponent},
         {path: 'login', component:LoginComponent},
+        { path: 'checkout', component: CheckoutComponent },
+        { path: 'payment', component: PaymentComponent },
        {
     path: '',
     redirectTo: 'products',
@@ -38,4 +44,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./component/cart/cart.component').then((a) => a.CartComponent),
   },
+  {
+  path: 'order-history',
+  loadComponent: () =>
+    import('./component/order-history/order-history.component')
+      .then(m => m.OrderHistoryComponent)
+}
+
 ];
