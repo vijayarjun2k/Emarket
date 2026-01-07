@@ -1,4 +1,4 @@
-import { Component, DoCheck, OnInit,inject } from '@angular/core';
+import { Component, DoCheck, OnInit,ViewChild,inject } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Roleaccess, Userinfo } from '../../Store/Model/User.model';
@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import {MatToolbarModule} from "@angular/material/toolbar"
-import {MatSidenavModule} from "@angular/material/sidenav"
+import {MatSidenav, MatSidenavModule} from "@angular/material/sidenav"
 import {MatMenuModule} from "@angular/material/menu"
 import {MatListModule} from "@angular/material/list"
 import {MatIconModule} from "@angular/material/icon"
@@ -24,6 +24,10 @@ import { CartStore } from '../../Store/cart.store';
 import { ProductsComponent } from '../products/products.component';
 import { NgModule } from '@angular/core';
 import { HugeiconsIconComponent } from '@hugeicons/angular';
+import { UiStateService } from '../../service/ui-state.service';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { LogoutDialogComponent } from '../logout-dialog/logout-dialog.component';
+import { MatDrawer } from '@angular/material/sidenav';
 //import { Home09Icon } from '@ncgr-shared/huge-icons/Home09Icon';
 @Component({
   selector: 'app-menubar',
@@ -42,7 +46,10 @@ import { HugeiconsIconComponent } from '@hugeicons/angular';
     RouterLink,
     RouterOutlet,
     MatBadgeModule,
-    HugeiconsIconComponent
+    HugeiconsIconComponent,
+    MatDialogModule,
+    MatDrawer,
+    MatSidenav
 ],
   templateUrl: './menubar.component.html',
   styleUrl: './menubar.component.css'
@@ -53,7 +60,7 @@ export class MenubarComponent implements DoCheck, OnInit {
   count$: Observable<number>;
   products$: Observable<IProduct[]>;
   cartStore = inject(CartStore);
-  constructor(private router: Router,private store: Store<AppState>) {
+  constructor(private uiState: UiStateService,private router: Router,private dialog: MatDialog,private store: Store<AppState>) {
     this.count$ = this.store.select(selectCount);
     this.products$ = this.store.select(selectCartProducts);
 
@@ -77,11 +84,42 @@ export class MenubarComponent implements DoCheck, OnInit {
   }
   ngDoCheck(): void {
     const currentroute = this.router.url;
-    if (currentroute === '/login' || currentroute === '/register') {
-      this.ismenuvisible = false
-    } else {
-      this.ismenuvisible = true;
-    }
+    const visible = !(currentroute === '/login' || currentroute === '/register');
+    this.ismenuvisible = visible;
+    this.uiState.setMenuVisible(visible);
   }
+
+   @ViewChild('drawer') drawer!: MatSidenav;
+
+  isSidenavOpen = false; // REQUIRED for resize behavior
+
+  toggleDrawer(): void {
+    this.isSidenavOpen = !this.isSidenavOpen;
+  }
+
+  closeDrawer(): void {
+    this.isSidenavOpen = false;
+  }
+  
+   openLogoutDialog(): void {
+    const dialogRef = this.dialog.open(LogoutDialogComponent, {
+      width: '350px',
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.logout();
+      }
+    });
+  }
+
+  logout(): void {
+    localStorage.clear();
+    sessionStorage.clear();
+
+    this.router.navigate(['/login']);
+  }
+
 }
 

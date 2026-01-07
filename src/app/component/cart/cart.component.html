@@ -82,27 +82,31 @@
             </button>
             <!-- Quantity Controls -->
             <div class="quantity-controls flex items-center pl-4">
-              <button
-                (click)="decrement(item.id, item.quantity)"
-                class="decrement-button bg-red-300 text-gray-600 hover:bg-red-400 px-2 py-1 rounded-l"
-              >
-                -
-              </button>
-              <input
-                type="number"
-                class="quantity-input h-7 w-12 text-center border-t border-b"
-                [(ngModel)]="item.quantity"
-                (ngModelChange)="onQuantityChange(item)"
-                min="1"
-              />
+  <button
+    (click)="decrement(item.id, item.quantity)"
+    class="decrement-button bg-gray-200 text-gray-700 hover:bg-gray-300 px-2 py-1 rounded-l transition"
+    aria-label="Decrease quantity"
+  >
+    −
+  </button>
 
-              <button
-                (click)="cartStore.increment(item.id)"
-                class="increment-button bg-green-300 text-gray-600 hover:bg-green-400 px-2 py-1 rounded-r"
-              >
-                +
-              </button>
-            </div>
+  <input
+    type="number"
+    class="quantity-input h-7 w-12 text-center border-t border-b border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400"
+    [(ngModel)]="item.quantity"
+    (ngModelChange)="onQuantityChange(item)"
+    min="1"
+  />
+
+  <button
+    (click)="cartStore.increment(item.id)"
+    class="increment-button bg-gray-200 text-gray-700 hover:bg-gray-300 px-2 py-1 rounded-r transition"
+    aria-label="Increase quantity"
+  >
+    +
+  </button>
+</div>
+
           </div>
         </div>
       </div>
@@ -124,7 +128,7 @@
     >
       Back to shop
     </button>
-    <button
+    <button class="checkout-btn"
       routerLink="/checkout"
       class="rounded-md bg-green-600 px-4 py-2 text-white font-semibold hover:bg-green-700"
     >

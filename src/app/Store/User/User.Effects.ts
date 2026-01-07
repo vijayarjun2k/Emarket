@@ -6,13 +6,14 @@ import { catchError, exhaustMap, map, of, switchMap } from 'rxjs';
 import { Router } from '@angular/router';
 import { showalert } from '../Common/App.Action';
 import { Userinfo } from '../Model/User.model';
-
+import { SessionTimeoutService } from '../../service/session-timeout.service';
 @Injectable()
 export class UserEffect {
   constructor(
     private action$: Actions,
     private service: UserService,
-    private route: Router
+    private route: Router,
+    private sessionTimeout: SessionTimeoutService
   ) {}
 
   _userregister = createEffect(() =>
@@ -51,6 +52,7 @@ export class UserEffect {
                             console.log(data);
                             if (_userdata.status === true) {
                                 this.service.SetUserToLoaclStorage(_userdata);
+                                this.sessionTimeout.startSession();
                                 this.route.navigate([''])
                                 return of(fetchmenu({ userrole: _userdata.role }),
                                     showalert({ message: 'Login success.', resulttype: 'pass' }))

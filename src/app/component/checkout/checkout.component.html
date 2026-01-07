@@ -1,6 +1,6 @@
 <div class="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow mt-6">
     
-  <h2 class="text-2xl font-bold mb-4"><i class="hgi hgi-stroke hgi-file-01"></i>&nbsp;Order Summary</h2>
+  <h2 class="text-2xl font-bold mb-4 flex justify-center"><i class="hgi hgi-stroke hgi-file-01"></i>&nbsp;Order Summary</h2>
 
   <div class="divide-y">
     @for (item of cartStore.products(); track item.id) {
@@ -16,100 +16,80 @@
   <div class="flex justify-between mt-6 text-lg font-semibold">
     <span>Total</span>
     <span>{{ cartStore.totalPrice() | currency}}</span>
-  </div>
+  </div><br>
+<h2 class="text-xl font-bold mb-4 flex justify-center">
+  <i class="hgi hgi-stroke hgi-truck-delivery"></i>&nbsp;Delivery Address
+</h2>
 
-  <div class="min-h-screen bg-100 flex justify-center p-6">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
 
-  <form
-    [formGroup]="checkoutForm"
-    class="bg-white w-full p-6 rounded-xl shadow space-y-4">
+  <!-- Permanent Address -->
+  <mat-card
+    class="address-card"
+    [class.selected]="selectedCard === 'permanent'"
+    (click)="selectPermanent()"
+  >
+    <mat-card-content>
+      <h3 class="font-semibold">Permanent Address</h3>
 
-    <h2 class="text-xl font-bold"><i class="hgi hgi-stroke hgi-truck-delivery"></i>&nbsp;Delivery Address</h2>
+      <ng-container *ngIf="permanentAddress; else noPermanent">
+        <p class="text-sm">{{ permanentAddress.name }}</p>
+        <p class="text-xs text-gray-600">
+          {{ permanentAddress.addressLine }}, {{ permanentAddress.city }}
+        </p>
+      </ng-container>
 
-    <!-- Full Name -->
-    <mat-form-field class="w-full">
-      <mat-label>Full Name</mat-label>
-      <input matInput formControlName="name">
-      <mat-error *ngIf="checkoutForm.get('name')?.hasError('required')">
-        Name is required
-      </mat-error>
-      <mat-error *ngIf="checkoutForm.get('name')?.hasError('pattern')">
-        Name must contain only letters
-      </mat-error>
-    </mat-form-field>
+      <ng-template #noPermanent>
+        <p class="text-sm text-gray-400">No permanent address</p>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
 
-    <!-- Email -->
-    <mat-form-field class="w-full">
-      <mat-label>Email</mat-label>
-      <input matInput formControlName="email">
-      <mat-error *ngIf="checkoutForm.get('email')?.invalid">
-        Enter a valid email address
-      </mat-error>
-    </mat-form-field>
+  <!-- Saved Address -->
+  <mat-card
+    class="address-card"
+    [class.selected]="selectedCard === 'saved'"
+    (click)="selectSaved()"
+  >
+    <mat-card-content>
+      <h3 class="font-semibold">Saved Address</h3>
 
-    <!-- Phone -->
-    <mat-form-field class="w-full">
-      <mat-label>Phone Number</mat-label>
-      <input matInput formControlName="phone">
-      <mat-error>
-        Enter a valid 10-digit phone number
-      </mat-error>
-    </mat-form-field>
+      <ng-container *ngIf="savedAddress; else noSaved">
+        <p class="text-sm">{{ savedAddress.name }}</p>
+        <p class="text-xs text-gray-600">
+          {{ savedAddress.addressLine }}, {{ savedAddress.city }}
+        </p>
+      </ng-container>
 
-    <!-- Address -->
-    <mat-form-field class="w-full">
-      <mat-label>Address</mat-label>
-      <textarea
-        matInput
-        rows="3"
-        formControlName="addressLine"
-        [maxlength]="maxAddressLength">
-      </textarea>
+      <ng-template #noSaved>
+        <p class="text-sm text-gray-400">No saved address</p>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
 
-      <mat-hint align="end">
-        {{ addressCount }}/{{ maxAddressLength }}
-      </mat-hint>
+  <!-- Add New -->
+  <mat-card class="address-card add-card" (click)="openAddressDialog()">
+    <mat-card-content class="flex flex-col items-center justify-center">
+      <mat-icon style="width: 17%; height: 65%;" class="text-4xl">add</mat-icon>
+      <span class="mt-2 font-semibold">Add New Address</span>
+    </mat-card-content>
+  </mat-card>
 
-      <mat-error *ngIf="checkoutForm.get('addressLine')?.invalid">
-        Address is required (max 40 characters)
-      </mat-error>
-    </mat-form-field>
-
-    <!-- City -->
-    <mat-form-field class="w-full">
-      <mat-label>City</mat-label>
-      <input matInput formControlName="city">
-    </mat-form-field>
-
-    <!-- Pincode -->
-    <mat-form-field class="w-full">
-      <mat-label>Pincode</mat-label>
-      <input matInput formControlName="pincode">
-      <mat-error>
-        Enter valid 6-digit pincode
-      </mat-error>
-    </mat-form-field>
-
-    <!-- Button -->
-    <button
-      mat-raised-button
-      color="primary"
-      class="w-full py-3 text-lg"
-      [disabled]="checkoutForm.invalid"
-      (click)="proceedToPayment()">
-      Continue to Payment
-    </button>
-
-  </form>
 </div>
 
-  <!-- <button
+<!-- CENTERED BUTTON -->
+<div class="flex justify-center mt-8">
+  <button
+    mat-raised-button
+    color="primary"
+    class="px-10 py-3 text-lg"
+    [disabled]="!selectedAddress"
     (click)="proceedToPayment()"
-    class="mt-6 w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700">
+  >
     Continue to Payment
-  </button> -->
+  </button>
+</div>
 
-</div> 
-
+</div>
 
 

@@ -1,38 +1,48 @@
-.example-spacer {
-    flex: 1 1 auto;
-  }
-mat-list-item {
-  cursor: pointer;
+.content-disabled {
+  opacity: 0.6;
+  filter: blur(2px) grayscale(20%);
 }
-mat-drawer {
-  padding-top: 64px !important; /* Push menu down */
+/* =========================
+   ROOT LAYOUT
+========================= */
+.layout-root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-mat-drawer-content {
-  padding-top: 64px !important; /* Prevent overlap */
-}
-
-mat-toolbar {
-  position: fixed !important;
+/* =========================
+   TOOLBAR
+========================= */
+.toolbar {
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  height: 64px;
   z-index: 1100;
-}
-.mat-mdc-list-item-icon {
-  opacity: 1 !important;
-  margin-right: 8px !important;
+  background-color: #16a34a;
+  color: white;
 }
 
-.mdc-list-item {
-  padding-left: 12px !important;
+.example-spacer {
+  flex: 1 1 auto;
 }
-.menu-icon {
-  font-size: 40px;
-  margin-right: 14px;
-  color: #374151; /* neutral gray */
-  display: flex;
-  align-items: center;
+
+/* =========================
+   SIDENAV CONTAINER
+========================= */
+.sidenav-container {
+  margin-top: 64px;               /* push below toolbar */
+  height: calc(100vh - 64px);     /* remaining height */
+  width: 100%;
+}
+
+/* =========================
+   NAV ITEMS
+========================= */
+mat-list-item {
+  cursor: pointer;
 }
 
 .menu-text {
@@ -40,9 +50,22 @@ mat-toolbar {
   font-weight: 500;
   color: #111827;
 }
+
+/* =========================
+   AUTH BACKGROUND
+========================= */
 .auth-bg {
+  height: 100vh;
   background-image: url('https://e1.pxfuel.com/desktop-wallpaper/581/154/desktop-wallpaper-backgrounds-for-login-page-login-page.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+/* =========================
+   BADGE FIX
+========================= */
+::ng-deep .mat-badge-content {
+  top: 6px !important;
+  right: 6px !important;
 }

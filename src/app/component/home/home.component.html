@@ -1,1 +1,33 @@
-<h1>Welcome</h1>
+<div class="home-container">
+
+  <!-- CAROUSEL -->
+  <div class="carousel">
+
+    <div
+      class="carousel-slide"
+      *ngFor="let slide of slides; let i = index"
+      [class.active]="i === currentIndex"
+      [style.backgroundImage]="'url(' + slide.image + ')'"
+    >
+      <div class="overlay">
+        <h1>{{ slide.title }}</h1>
+        <p>{{ slide.description }}</p>
+      </div>
+    </div>
+
+    <!-- ARROWS -->
+    <button class="nav left" (click)="prevSlide()">❮</button>
+    <button class="nav right" (click)="nextSlide()">❯</button>
+
+    <!-- DOTS -->
+    <div class="dots">
+      <span
+        *ngFor="let slide of slides; let i = index"
+        [class.active]="i === currentIndex"
+        (click)="goToSlide(i)"
+      ></span>
+    </div>
+
+  </div>
+
+</div>
