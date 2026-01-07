@@ -1,0 +1,12 @@
+<div class="tour-card">
+  <h3>{{ title }}</h3>
+  <p>{{ description }}</p>
+
+  <div class="actions">
+    <button mat-button *ngIf="!isFirst" (click)="prev.emit()">Previous</button>
+    <button mat-button color="warn" (click)="skip.emit()">Skip</button>
+    <button mat-raised-button color="primary" (click)="next.emit()">
+      {{ isLast ? 'Finish' : 'Next' }}
+    </button>
+  </div>
+</div>

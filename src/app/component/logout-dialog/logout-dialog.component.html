@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Confirm Logout</h2>
+
+<mat-dialog-content>
+  Are you sure you want to logout?
+</mat-dialog-content>
+
+<mat-dialog-actions style="justify-content: end;">
+  <button class="px-4 py-2 rounded-md bg-gray-200 hover:bg-gray-300" (click)="onCancel()">Cancel</button>&nbsp;
+  <button class="px-4 py-2 rounded-md bg-green-600 text-white hover:bg-green-700" (click)="onConfirm()">
+    Yes
+  </button>
+</mat-dialog-actions>
