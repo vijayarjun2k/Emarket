@@ -14,6 +14,18 @@ export const GET_ROLE_SUCC='[role] get role succ'
 export const GET_USERBYCODE='[user] get userbycode'
 export const GET_USERBYCODE_SUCC='[user] get userbycode succ'
 export const UPDATE_ROLE='[user] update role'
+export const LOGIN_SUCCESS = '[auth] login success'
+export const LOGIN_FAILURE = '[auth] login failure'
+
+export const loginSuccess = createAction(
+  LOGIN_SUCCESS,
+  props<{ user: Userinfo }>()
+)
+
+export const loginFailure = createAction(
+  LOGIN_FAILURE,
+  props<{ error: string }>()
+)
 
 export const beginRegister=createAction(BEGIN_REGISTER,props<{userdata:Users}>())
 

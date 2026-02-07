@@ -24,6 +24,8 @@ import { cartReducer } from './states/cart/cart.reducer';
 import { ProductReducer } from './states/product/product.reducer';
 import { counterReducer } from './states/counter/counter.reducer';
 import { ProductEffect } from './states/product/product.effect';
+import { AuthReducer } from './states/auth/auth.reducer';
+import { AuthEffects } from './states/auth/auth.effects';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
@@ -36,13 +38,15 @@ export const appConfig: ApplicationConfig = {
 
     // NGRX
     provideStore({
-      user: UserReducer
+      auth: AuthReducer,
+      user: UserReducer,
+      cart: cartReducer
     }),
     provideState('associate', AssociateReducer),
     provideState({ name: 'counter', reducer: counterReducer }),
     provideState({ name: 'cart', reducer: cartReducer }),
     provideState({ name: 'product', reducer: ProductReducer }),
-    provideEffects([UserEffect, AppEffects, AssociateEffects,ProductEffect]),
+    provideEffects([UserEffect, AppEffects, AssociateEffects,ProductEffect, AuthEffects]),
     provideStoreDevtools({ maxAge: 25,logOnly: false,
       trace: true,
       traceLimit: 75, }),
